@@ -15,7 +15,7 @@ const companySchema = new Schema({
         required: true
     },
     Positions:{
-        type:String[{}]
+        type:Array
     },
     Salary:{
         type: Number
