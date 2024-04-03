@@ -23,9 +23,6 @@ router.post('/', async (req, res) =>{
     }catch (err){
         res.status(404).json({error: err.message});
     }
-
-
-    res.json({msg: "POST single company"});
 });
 
 // DELETE a new company
