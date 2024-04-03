@@ -15,10 +15,10 @@ const companySchema = new Schema({
         required: true
     },
     Positions:{
-        type: String[{}]
+        type:String[{}]
     },
     Salary:{
-        type:number
+        type: Number
     },
     Links:{
         type: String[{}]
