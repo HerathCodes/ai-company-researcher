@@ -1,7 +1,8 @@
-import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,6 +20,13 @@ function Login() {
       })
       
     const data = await response.json();
+    if (data.user) {
+      alert('Login successful!')
+      localStorage.setItem('token', data.user)
+      navigate('/')
+    } else {
+      alert('Invalid Login.')
+    }
     console.log(data);
   } 
 

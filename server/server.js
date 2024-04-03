@@ -36,14 +36,23 @@ app.post('/api/register', async (req, res) => {
 });
 
 app.post('/api/login', async (req, res) => {
-    console.log(req.body);
+    
     const user = await User.findOne({
         email: req.body.email,
         password: req.body.password
     })
 
     if (user) {
-        return res.json({status: 200, user:true});
+        const token = jwt.sign(
+            {
+                email: user.email,
+                name: user.name
+            },
+            process.env.JWT_SECRET,
+            {expiresIn: '1h'}
+        )
+
+        return res.json({status: 200, user:token});
     } else {
         return res.json({status: 401, user:false});
 
