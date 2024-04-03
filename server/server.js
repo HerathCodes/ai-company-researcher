@@ -3,9 +3,19 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.post('/api/register', (req, res) => {
+    res.json({status : 200});
+    console.log(req.body);
+});
 
 app.get('/', (req, res) => {
     res.send('Hello World')
