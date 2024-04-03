@@ -3,14 +3,13 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const companyRoutes = require('./routes/companies');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send('Hello World')
-});
-
+app.use(express.json());
+app.use('/api/companies',companyRoutes);
 
 
 mongoose.connect("mongodb+srv://admin:qYmTIesSWXqh4Dg2@researchdb.orfjsuq.mongodb.net/ai-company-researcher?retryWrites=true&w=majority&appName=researchDB")
