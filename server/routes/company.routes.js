@@ -4,7 +4,7 @@ const {
     getCompany,
     createCompany,
     deleteCompany
-} = require('../controllers/companies.controller')
+} = require('../controllers/company.controller')
 
 const router  = express.Router()
 

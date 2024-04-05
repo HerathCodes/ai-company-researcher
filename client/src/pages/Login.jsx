@@ -8,7 +8,7 @@ function Login() {
 
   async function loginUser(e) {
     e.preventDefault();
-    const response = await fetch('http://localhost:3000/api/login', {
+    const response = await fetch('http://localhost:3000/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
