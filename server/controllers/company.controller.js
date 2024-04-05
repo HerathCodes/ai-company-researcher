@@ -11,13 +11,10 @@ const getCompanies = async(req,res) =>{
 
 //GET a single company
 const getCompany = async(req,res) =>{
-    const {id} = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "No such company"});
-    }
-
-    const company = await Company.findById(id);
+    const company = await Company.findOne({
+        Name: req.body.name
+    });
 
     if(!company){
         return res.status(400).json({error: "No such company"});
@@ -34,7 +31,7 @@ const createCompany = async(req, res) => {
     try{
         const company = await Company.create({Name, Office, Summary, Positions, Salary, Links});
         res.status(200).json(company);
-    }catch (err){
+    } catch (err){
         res.status(404).json({error: err.message});
     }
 }
