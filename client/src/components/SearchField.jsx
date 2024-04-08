@@ -33,6 +33,20 @@ function SearchField() {
         fetchCompanies();
     }, []);
 
+    useEffect(() => {
+        // Logic to handle query update
+        if (query) {
+          if (query._id) {
+            // scroll to company card
+            console.log("Company card:", query);
+          } else {
+            // scroll to create company card
+            console.log("Create company card:", query);
+          }
+          setQuery('');
+        }
+      }, [query]);
+
     return (
         <Autocomplete
             value={query}
@@ -44,19 +58,11 @@ function SearchField() {
                     });
                 } else if (newQuery && newQuery.inputValue) {
                     // Create a new value from the user input
-                    console.log(newQuery);
                     setQuery({
                         Name: newQuery.inputValue,
                     });
                 } else {
                     setQuery(newQuery);
-                    if (query !== null) {
-                        if (query._id) {
-                            // scroll to company card
-                        } else {
-                            // scroll to create company card
-                        }
-                    }
                 }
             }}
             filterOptions={(options, params) => {
@@ -73,6 +79,8 @@ function SearchField() {
                 return filtered;
             }}
             selectOnFocus
+            disableClearable
+            clearOnBlur
             handleHomeEndKeys
             options={companies}
             getOptionLabel={(option) => {
