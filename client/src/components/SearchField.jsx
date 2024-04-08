@@ -39,31 +39,34 @@ function SearchField() {
             onChange={(event, newQuery) => {
                 if (typeof newQuery === 'string') {
                     setQuery({
-                    Name: newQuery,
-                  });
+                        Name: newQuery,
+                    });
                 } else if (newQuery && newQuery.inputValue) {
-                  // Create a new value from the user input
-                  setQuery({
-                    Name: newQuery.inputValue,
-                  });
+                    // Create a new value from the user input
+                    console.log(newQuery);
+                    setQuery({
+                        Name: newQuery.inputValue,
+                    });
                 } else {
-                  setQuery(newQuery);
+                    console.log(newQuery);
+                    setQuery(newQuery);
                 }
             }}
             filterOptions={(options, params) => {
                 const filtered = filter(options, params);
                 const { inputValue } = params;
                 const isExisting = options.some((option) => inputValue === option.Name);
-                if (inputValue !== '' && !isExisting) {
+                if (inputValue !== '' && !isExisting && filtered.length === 0) {
                   filtered.push({
                     inputValue,
-                    title: `Get the gist of "${inputValue}!"`,
+                    Name: `Get the gist of "${inputValue}!"`,
                   });
                 }
         
                 return filtered;
             }}
             selectOnFocus
+            disableClearable
             clearOnBlur
             handleHomeEndKeys
             id="search"
