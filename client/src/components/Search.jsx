@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import SearchField from './SearchField';
 
-function Search(){
+function Search(props){
+    const { callback } = props;
     return (
         <div className="search-container">
             {/* <div className="dropDown">
@@ -19,7 +20,7 @@ function Search(){
             </div> */}
             
             <div className="search-box">
-                <SearchField/>
+                <SearchField callback={callback}/>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </div>
         </div>

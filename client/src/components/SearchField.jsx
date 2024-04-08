@@ -7,12 +7,12 @@ import { createTheme } from '@mui/system';
 const theme = createTheme({
 })
 
-function SearchField() {
+function SearchField(props) {
 
     const [query, setQuery] = useState('');
     const [companies, setCompanies] = useState([]);
-
     const filter = createFilterOptions();
+    const { callback } = props;
 
     useEffect(() => {
         const fetchCompanies = async () => {
@@ -36,14 +36,8 @@ function SearchField() {
     useEffect(() => {
         // Logic to handle query update
         if (query) {
-          if (query._id) {
-            // scroll to company card
-            console.log("Company card:", query);
-          } else {
-            // scroll to create company card
-            console.log("Create company card:", query);
-          }
-          setQuery('');
+            callback(query);
+            setQuery('');
         }
       }, [query]);
 
