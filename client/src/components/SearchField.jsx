@@ -49,6 +49,11 @@ function SearchField() {
                     });
                 } else {
                     setQuery(newQuery);
+                    if (query._id) {
+                        // scroll function
+                    } else {
+                        // open modal to create company
+                    }
                     
                 }
             }}
