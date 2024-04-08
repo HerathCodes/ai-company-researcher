@@ -36,6 +36,7 @@ function SearchField() {
     return (
         <Autocomplete
             value={query}
+            id="autocomplete"
             onChange={(event, newQuery) => {
                 if (typeof newQuery === 'string') {
                     setQuery({
@@ -49,12 +50,13 @@ function SearchField() {
                     });
                 } else {
                     setQuery(newQuery);
-                    if (query._id) {
-                        // scroll function
-                    } else {
-                        // open modal to create company
+                    if (query !== null) {
+                        if (query._id) {
+                            // scroll to company card
+                        } else {
+                            // scroll to create company card
+                        }
                     }
-                    
                 }
             }}
             filterOptions={(options, params) => {

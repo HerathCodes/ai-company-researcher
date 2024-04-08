@@ -4,10 +4,24 @@ import CardMedia from '@mui/material/CardMedia';
 
 import React from 'react'
 
-function CompanyCard() {
-  return (
-    <div>CompanyCard</div>
-  )
+function CompanyCard(props) {
+  const { query } = props;
+
+  if (query._id) {
+    return (
+      <Card>
+        
+      </Card>
+    )
+  } else {
+    return (
+      <Card>
+
+
+        
+      </Card>
+    )
+  }
 }
 
 export default CompanyCard
