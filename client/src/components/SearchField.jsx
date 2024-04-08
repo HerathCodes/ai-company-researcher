@@ -48,8 +48,8 @@ function SearchField() {
                         Name: newQuery.inputValue,
                     });
                 } else {
-                    console.log(newQuery);
                     setQuery(newQuery);
+                    
                 }
             }}
             filterOptions={(options, params) => {
