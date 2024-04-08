@@ -36,7 +36,7 @@ function SearchField() {
     return (
         <Autocomplete
             value={query}
-            id="autocomplete"
+            id="custom-autocomplete"
             onChange={(event, newQuery) => {
                 if (typeof newQuery === 'string') {
                     setQuery({
@@ -73,10 +73,7 @@ function SearchField() {
                 return filtered;
             }}
             selectOnFocus
-            disableClearable
-            clearOnBlur
             handleHomeEndKeys
-            id="search"
             options={companies}
             getOptionLabel={(option) => {
                 if (typeof option === 'string') {
@@ -88,12 +85,6 @@ function SearchField() {
                 return option.Name;
               }}
             renderOption={(props, option) => <li {...props}>{option.Name}</li>}
-            sx={
-                { 
-                    width: 800,
-                    borderRadius: 10,
-                }
-            }
             freeSolo
             renderInput={(params) => (
                 <TextField 

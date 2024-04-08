@@ -99,3 +99,28 @@ body{
     font-weight: 500;
     color: var(--purple);
 }
+
+.css-hwkq3c-MuiInputBase-root-MuiFilledInput-root{
+    border-radius: 40px !important;
+    width: 100% !important;
+    background-color: #ffffff !important;
+    
+}
+
+.css-10botns-MuiInputBase-input-MuiFilledInput-input{
+    width: 80% !important;
+}
+
+.css-1s5lphu-MuiPopper-root-MuiAutocomplete-popper{
+    border-radius: 40px !important;
+    background-color: #ffffff !important;
+    width: 40% !important;
+    margin-left: 1% !important;
+}
+.css-hwkq3c-MuiInputBase-root-MuiFilledInput-root::after{
+    display: none !important;
+}
+
+.css-hwkq3c-MuiInputBase-root-MuiFilledInput-root::before{
+    display: none !important;
+}
