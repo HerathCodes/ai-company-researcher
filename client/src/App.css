@@ -11,15 +11,25 @@
 :root{
     --purple: #9a1663;
     --white:#ffffff;
-    --shadow:rgba(0,0,0,0.15) 0px 5px 15px 0px;
 }
 
-body{
-    display: flex;
-    align-items: center;
+
+.search-section{
+    background: rgb(115,60,218);
+    background: linear-gradient(rgb(111, 53, 218) 0%, rgba(50,3,145,1) 60%);
+}
+.company-card-section{
+    background: linear-gradient(rgba(50,3,145,1), black );
+}
+
+section{
+    display: grid;
+    place-items: center;
     justify-content: center;
-    height: 70vh;
-    background: radial-gradient(circle, rgba(115,60,218,1) 0%, rgba(50,3,145,1) 100%);
+    align-content: center;
+    min-height:100vh;
+    width: 100%;
+    z-index: -1;
 }
 
 .search-container{
@@ -30,47 +40,6 @@ body{
     border-radius: 50px;
 }
 
-.dropDown{
-    position: relative;
-    width: 280px;
-    border-radius: 50px;
-    border: 1px solid var(--white);
-    background-color: var(--purple);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-}
-
-.dropdown-text{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--white);
-    padding: 1rem 1.5rem;
-}
-
-.dropdown-list{
-    position: absolute;
-    top: 4rem;
-    left: 0;
-    width: 100%;
-    border-radius: 15px;
-    background-color: var(--white);
-}
-
-.dropdown-list-item{
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 1rem 0 1rem 1.5rem;
-    cursor: pointer;
-    transition: margin-left 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-list-item:hover{
-    margin-left: 0.5rem;
-    color: var(--purple);
-}
 
 .search-box{
     display: flex;
@@ -88,6 +57,7 @@ body{
     color: var(--purple);
     border: 0;
     outline: 0;
+    z-index: 100000000;
 }
 
 .search-box i{
@@ -103,7 +73,7 @@ body{
 .css-hwkq3c-MuiInputBase-root-MuiFilledInput-root{
     border-radius: 40px !important;
     width: 100% !important;
-    background-color: #ffffff !important;
+    background-color: var(--white) !important;
     
 }
 
@@ -112,7 +82,7 @@ body{
 }
 
 .css-1s5lphu-MuiPopper-root-MuiAutocomplete-popper{
-    border-radius: 40px !important;
+    margin-top: 2px !important;
     background-color: #ffffff !important;
     width: 40% !important;
     margin-left: 1% !important;

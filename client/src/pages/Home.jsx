@@ -26,10 +26,14 @@ function Home() {
     }, [])
 
     return (
-        <div>
-            <Search callback={handleQuerySubmit}/>
-            {company && <CompanyCard query={company}/>}
-        </div>
+        <>
+            <section className="search-section">
+                <Search callback={handleQuerySubmit}/>
+            </section>
+            <section className="company-card-section">
+                {company && <CompanyCard query={company}/>}
+            </section>
+        </>
     )
 }
 
