@@ -9,7 +9,7 @@
 }
 
 :root{
-    --purple: #9a1663;
+    --purple: rgb(111, 53, 218);
     --white:#ffffff;
 }
 
@@ -93,4 +93,8 @@ section{
 
 .css-hwkq3c-MuiInputBase-root-MuiFilledInput-root::before{
     display: none !important;
+}
+
+.css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+    color: var(--purple) !important;
 }
