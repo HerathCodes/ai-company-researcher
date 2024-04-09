@@ -4,7 +4,7 @@ import { faCaretDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icon
 import SearchField from './SearchField';
 
 function Search(props){
-    const { callback } = props;
+    const { isAuthenticated, callback } = props;
     return (
         <div className="search-container">
             {/* <div className="dropDown">
@@ -20,7 +20,7 @@ function Search(props){
             </div> */}
             
             <div className="search-box">
-                <SearchField callback={callback}/>
+                <SearchField isAuthenticated={isAuthenticated} callback={callback}/>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </div>
         </div>

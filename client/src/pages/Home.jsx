@@ -7,7 +7,7 @@ import CompanyCard from '../components/CompanyCard';
 function Home() {
     const navigate = useNavigate();
     const [company, setCompany] = useState(null);
-
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const handleQuerySubmit = (query) => {
         setCompany(query);
     };
@@ -18,21 +18,27 @@ function Home() {
             const user = jwtDecode(token);
             if (!user) {
                 localStorage.removeItem('token');
-                navigate('/login');
+                // navigate('/login');
             }
-        } else {
-            navigate('/login');
-        }
+            else {
+                setIsAuthenticated(true);
+                console.log(true);
+            }
+        } 
+        // else {
+        //     navigate('/login');
+        // }
     }, [])
 
     return (
         <>
             <section className="search-section">
-                <Search callback={handleQuerySubmit}/>
+                <Search isAuthenticated={isAuthenticated} callback={handleQuerySubmit}/>
             </section>
-            <section className="company-card-section">
-                {company && <CompanyCard query={company}/>}
+            { company && <section className="company-card-section">
+                <CompanyCard query={company}/>
             </section>
+            }
         </>
     )
 }

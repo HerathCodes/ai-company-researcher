@@ -1,40 +1,62 @@
 import React, {useState, useEffect} from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import { createTheme } from '@mui/system';
+import CircularProgress from '@mui/material/CircularProgress';
 
-
-const theme = createTheme({
-})
 
 function SearchField(props) {
 
     const [query, setQuery] = useState('');
     const [companies, setCompanies] = useState([]);
-    const filter = createFilterOptions();
-    const { callback } = props;
 
+    const [loading, setLoading] = useState(true);
+    
+    const filter = createFilterOptions();
+    const { isAuthenticated, callback } = props;
+
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+      
     useEffect(() => {
+
+        let active = true;
+
+        if (!loading) {
+            return undefined;
+        }
+
         const fetchCompanies = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`http://localhost:3000/api/companies/`);
-    
+                await sleep(1500);
                 if (response.status === 200) {
                     const data = await response.json();
+                    console.log(data);
                     setCompanies(data);
                 } else {
                     console.error('Failed to fetch companies:', response.statusText);
                 }
             } catch (error) {
                 console.error('GET Error: ' + error);
+            } finally {
+                console.log("done loading");
+                setLoading(false);
             }
         }
+        
+        if (active) {
+            fetchCompanies();
+        }
 
-        fetchCompanies();
-    }, []);
+        return () => {
+            active = false;
+        };
+    }, [loading]);
 
     useEffect(() => {
-        // Logic to handle query update
         if (query) {
             callback(query);
             setQuery('');
@@ -77,6 +99,7 @@ function SearchField(props) {
             clearOnBlur
             handleHomeEndKeys
             options={companies}
+            loading={loading}
             getOptionLabel={(option) => {
                 if (typeof option === 'string') {
                   return option;
@@ -92,6 +115,15 @@ function SearchField(props) {
                 <TextField 
                     {...params} 
                     label="search company..."
+                    InputProps={{
+                        ...params.InputProps,
+                        endAdornment: (
+                            <React.Fragment>
+                                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                                {params.InputProps.endAdornment}
+                            </React.Fragment>
+                        )
+                    }}
                     fullWidth
                     sx={ 
                         { 
