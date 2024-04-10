@@ -92,3 +92,7 @@ section{
     background-color: white !important;
     border-radius: 80px !important;
 }
+
+th{
+    font-weight: 600 !important;
+}
