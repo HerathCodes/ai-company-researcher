@@ -13,11 +13,6 @@ function SearchField(props) {
     
     const filter = createFilterOptions();
     const { isAuthenticated, callback } = props;
-
-
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
       
     useEffect(() => {
 
@@ -31,7 +26,6 @@ function SearchField(props) {
             try {
                 setLoading(true);
                 const response = await fetch(`http://localhost:3000/api/companies/`);
-                await sleep(1500);
                 if (response.status === 200) {
                     const data = await response.json();
                     console.log(data);
@@ -67,21 +61,22 @@ function SearchField(props) {
         <Autocomplete
             value={query}
             id="custom-autocomplete"
-            onChange={(event, newQuery) => {
+            onChange={(event, newQuery) => { // represents on click
                 if (typeof newQuery === 'string') {
                     setQuery({
                         Name: newQuery,
                     });
                 } else if (newQuery && newQuery.inputValue) {
-                    // Create a new value from the user input
+                    // post new company
                     setQuery({
                         Name: newQuery.inputValue,
                     });
+                    console.log(newQuery.inputValue);
                 } else {
                     setQuery(newQuery);
                 }
             }}
-            filterOptions={(options, params) => {
+            filterOptions={(options, params) => { // updates autocomplete options
                 const filtered = filter(options, params);
                 const { inputValue } = params;
                 const isExisting = options.some((option) => inputValue === option.Name);
