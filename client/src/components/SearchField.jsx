@@ -122,13 +122,14 @@ function SearchField(props) {
                                 {loading ? <CircularProgress color="inherit" size={20} /> : null}
                                 {params.InputProps.endAdornment}
                             </React.Fragment>
-                        )
+                        ),
+                        disableUnderline: true,
                     }}
                     fullWidth
                     sx={ 
                         { 
                             borderRadius: 10, 
-                            width:800 
+                            width:800,
                         } 
                     }
                     variant="filled"

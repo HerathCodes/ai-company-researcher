@@ -7,18 +7,6 @@ function Search(props){
     const { isAuthenticated, callback } = props;
     return (
         <div className="search-container">
-            {/* <div className="dropDown">
-                <div className="dropdown-text">
-                    <span>Everything</span>
-                    <FontAwesomeIcon icon={faCaretDown}/>
-                </div>
-                    <ul className="dropdown-list">
-                    <li className="dropdown-list-item">Everything</li>
-                    <li className="dropdown-list-item">Other</li>
-                    <li className="dropdown-list-item">Another</li>
-                </ul>
-            </div> */}
-            
             <div className="search-box">
                 <SearchField isAuthenticated={isAuthenticated} callback={callback}/>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
