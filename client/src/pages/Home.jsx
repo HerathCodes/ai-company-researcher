@@ -3,13 +3,20 @@ import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import Search from '../components/Search';
 import CompanyCard from '../components/CompanyCard';
+import Modal from "../components/Modal";
+
 
 function Home() {
     const navigate = useNavigate();
     const [company, setCompany] = useState(null);
+    const [isCompanyAdded, setIsCompanyAdded] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const handleQuerySubmit = (query) => {
         setCompany(query);
+    };
+
+    const handleCompanyUpdate = (boolean) => {
+        setIsCompanyAdded(boolean);
     };
 
     useEffect(() => {
@@ -22,7 +29,6 @@ function Home() {
             }
             else {
                 setIsAuthenticated(true);
-                console.log(true);
             }
         } 
         // else {
@@ -33,9 +39,10 @@ function Home() {
     return (
         <>
             <section className="search-section">
-                <Search isAuthenticated={isAuthenticated} callback={handleQuerySubmit}/>
+                <Search isAuthenticated={isAuthenticated} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded}/>
+                { company && !company._id && <Modal query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} /> } 
             </section>
-            { company && <section className="company-card-section">
+            { company && company._id && <section className="company-card-section">
                 <CompanyCard query={company}/>
             </section>
             }

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const companySchema = new Schema({
@@ -8,21 +7,16 @@ const companySchema = new Schema({
         required: true,
         unique: true
     },
-    Office: {
-        type: String,
-    },
     Summary: {
         type: String,
         required: true
     },
-    Positions:{
-        type:[String]
-    },
-    Salary:{
-        type:Number
+    Site: {
+        type: String,
+        required: true
     },
     Links:{
-        type:[String]
+        type: [String]
     }
 }, {timestamps:true});
 

@@ -1,64 +1,41 @@
 import React, {useState, useEffect} from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import CircularProgress from '@mui/material/CircularProgress';
 
 
 function SearchField(props) {
 
     const [query, setQuery] = useState('');
     const [companies, setCompanies] = useState([]);
-
-    const [loading, setLoading] = useState(true);
     
     const filter = createFilterOptions();
-    const { isAuthenticated, callback } = props;
-
-
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    const { isAuthenticated, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded } = props;
       
     useEffect(() => {
-
-        let active = true;
-
-        if (!loading) {
-            return undefined;
-        }
-
         const fetchCompanies = async () => {
             try {
-                setLoading(true);
                 const response = await fetch(`http://localhost:3000/api/companies/`);
-                await sleep(1500);
                 if (response.status === 200) {
                     const data = await response.json();
-                    console.log(data);
                     setCompanies(data);
                 } else {
                     console.error('Failed to fetch companies:', response.statusText);
                 }
+                console.log("I AM RUNNING");
             } catch (error) {
                 console.error('GET Error: ' + error);
-            } finally {
-                console.log("done loading");
-                setLoading(false);
             }
         }
         
-        if (active) {
+        if (isCompanyAdded === true) {
             fetchCompanies();
+            handleCompanyUpdate(false);
         }
-
-        return () => {
-            active = false;
-        };
-    }, [loading]);
+    }, [isCompanyAdded]);
 
     useEffect(() => {
         if (query) {
-            callback(query);
+            handleQuerySubmit(query);
             setQuery('');
         }
       }, [query]);
@@ -67,21 +44,22 @@ function SearchField(props) {
         <Autocomplete
             value={query}
             id="custom-autocomplete"
-            onChange={(event, newQuery) => {
+            onChange={(event, newQuery) => { // represents on click
                 if (typeof newQuery === 'string') {
                     setQuery({
                         Name: newQuery,
                     });
                 } else if (newQuery && newQuery.inputValue) {
-                    // Create a new value from the user input
+                    // post new company
                     setQuery({
                         Name: newQuery.inputValue,
                     });
+                    console.log(newQuery.inputValue);
                 } else {
                     setQuery(newQuery);
                 }
             }}
-            filterOptions={(options, params) => {
+            filterOptions={(options, params) => { // updates autocomplete options
                 const filtered = filter(options, params);
                 const { inputValue } = params;
                 const isExisting = options.some((option) => inputValue === option.Name);
@@ -99,7 +77,6 @@ function SearchField(props) {
             clearOnBlur
             handleHomeEndKeys
             options={companies}
-            loading={loading}
             getOptionLabel={(option) => {
                 if (typeof option === 'string') {
                   return option;
@@ -117,12 +94,6 @@ function SearchField(props) {
                     label="search company..."
                     InputProps={{
                         ...params.InputProps,
-                        endAdornment: (
-                            <React.Fragment>
-                                {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                                {params.InputProps.endAdornment}
-                            </React.Fragment>
-                        ),
                         disableUnderline: true,
                     }}
                     fullWidth
