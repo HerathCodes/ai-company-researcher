@@ -9,8 +9,14 @@ import Modal from "../components/Modal";
 function Home() {
     const navigate = useNavigate();
     const [company, setCompany] = useState(null);
+    const [open, setOpen] = useState(true);
     const [isCompanyAdded, setIsCompanyAdded] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleModal = (boolean) => {
+        setOpen(boolean);
+    };
+
     const handleQuerySubmit = (query) => {
         setCompany(query);
     };
@@ -39,8 +45,8 @@ function Home() {
     return (
         <>
             <section className="search-section">
-                <Search isAuthenticated={isAuthenticated} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded}/>
-                { company && !company._id && <Modal query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} /> } 
+                <Search isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded}/>
+                { company && !company._id && <Modal open={open} handleModal={handleModal} query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} /> } 
             </section>
             { company && company._id && <section className="company-card-section">
                 <CompanyCard query={company}/>

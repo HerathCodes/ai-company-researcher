@@ -9,7 +9,7 @@ function SearchField(props) {
     const [companies, setCompanies] = useState([]);
     
     const filter = createFilterOptions();
-    const { isAuthenticated, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded } = props;
+    const { isAuthenticated, handleModal, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded } = props;
       
     useEffect(() => {
         const fetchCompanies = async () => {
@@ -21,7 +21,6 @@ function SearchField(props) {
                 } else {
                     console.error('Failed to fetch companies:', response.statusText);
                 }
-                console.log("I AM RUNNING");
             } catch (error) {
                 console.error('GET Error: ' + error);
             }
@@ -54,9 +53,11 @@ function SearchField(props) {
                     setQuery({
                         Name: newQuery.inputValue,
                     });
-                    console.log(newQuery.inputValue);
+                    handleModal(true);
+                    handleQuerySubmit(query);
                 } else {
                     setQuery(newQuery);
+                    handleQuerySubmit(query);
                 }
             }}
             filterOptions={(options, params) => { // updates autocomplete options

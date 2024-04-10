@@ -10,16 +10,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 function Modal(props) {
 
 
-    const { query, handleQuerySubmit, handleCompanyUpdate } = props;
-    const [open, setOpen] = useState(true);
+    const { open, handleModal, query, handleQuerySubmit, handleCompanyUpdate } = props;
 
-    const handleClickOpen = () => {
-      setOpen(true);
+    const handleClose = () => {
+      handleModal(false);
     };
   
-    const handleClose = () => {
-      setOpen(false);
-    };
+    // const handleClose = () => {
+    //   setOpen(false);
+    // };
 
     async function scrapeCompany(e) {
         e.preventDefault();
@@ -76,7 +75,6 @@ function Modal(props) {
                     component: 'form',
                     onSubmit: (event) => {
                         scrapeCompany(event);
-                        console.log(query);
                         handleClose();
                     }
                 }}
@@ -89,7 +87,7 @@ function Modal(props) {
                 <TextField
                     autoFocus
                     required
-                    margin="normal"
+                    margin="dense"
                     id="modalName"
                     name="name"
                     label="Company Name"
@@ -102,7 +100,7 @@ function Modal(props) {
                 />
                 <TextField
                     required
-                    margin="normal"
+                    margin="dense"
                     id="modalSite"
                     name="site"
                     label="Corporate Site"

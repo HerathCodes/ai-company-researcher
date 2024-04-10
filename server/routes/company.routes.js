@@ -20,7 +20,7 @@ router.post('/', createCompany);
 router.get('/:name', getCompany);
 
 // DELETE a company
-router.delete('/:name', deleteCompany);
+router.delete('/:id', deleteCompany);
 
 //GET like companies
 router.get('/search/:query', getLikeCompanies);
