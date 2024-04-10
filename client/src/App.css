@@ -38,7 +38,7 @@ section{
     min-width: 700px;
     background-color: var(--white);
     border-radius: 50px;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 
 

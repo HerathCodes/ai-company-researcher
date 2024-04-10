@@ -11,16 +11,13 @@ const companySchema = new Schema({
         type: String,
         required: true
     },
-    Rating: {
-        type: Number
-    },
     Site: {
         type: String,
         required: true
     },
-    Articles:[{
-        type:Schema.Types.ObjectId, ref: 'Article'
-    }]
+    Links:{
+        type: [String]
+    }
 }, {timestamps:true});
 
 module.exports = mongoose.model('Company', companySchema);
