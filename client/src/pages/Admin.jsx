@@ -1,36 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { jwtDecode } from 'jwt-decode'
 import CompanyTable from '../components/CompanyTable';
 
-function Admin(){
+function Admin(props){
     const navigate = useNavigate();
-    const [company, setCompany] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { isAdmin } = props;
+
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const user = jwtDecode(token);
-            if (!user) {
-                localStorage.removeItem('token');
-                // navigate('/login');
-            }
-            else {
-                setIsAuthenticated(true);
-                console.log(true);
-            }
-        } 
-        // else {
-        //     navigate('/login');
-        // }
-    }, [])
+        if (!isAdmin) {
+            navigate('/');
+            alert('You must be an admin to view this page');
+        }
+    }, [isAdmin]);
 
     return (
-        <>
-            <CompanyTable/>
-        </>
-    )
+        <CompanyTable />
+    );
 }
 
 export default Admin

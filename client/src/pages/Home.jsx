@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { jwtDecode } from 'jwt-decode'
 import Search from '../components/Search';
 import CompanyCard from '../components/CompanyCard';
 import Modal from "../components/Modal";
 
 
-function Home() {
-    const navigate = useNavigate();
+function Home(props) {
+    const { isAuthenticated } = props; 
     const [company, setCompany] = useState(null);
     const [open, setOpen] = useState(true);
     const [isCompanyAdded, setIsCompanyAdded] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const handleModal = (boolean) => {
         setOpen(boolean);
@@ -25,22 +22,6 @@ function Home() {
         setIsCompanyAdded(boolean);
     };
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const user = jwtDecode(token);
-            if (!user) {
-                localStorage.removeItem('token');
-                // navigate('/login');
-            }
-            else {
-                setIsAuthenticated(true);
-            }
-        } 
-        // else {
-        //     navigate('/login');
-        // }
-    }, [])
 
     return (
         <>
