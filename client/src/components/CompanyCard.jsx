@@ -25,7 +25,7 @@ function CompanyCard(props) {
   } else {
     // http://serpapi.com/playground?engine=google_about_this_result&api_key=${process.env.SERP_API_KEY}google_domain=google.com&q=${query.Name}
     return (
-      <Card>
+      <Card >
         <CardContent>
           <Typography variant="h5" component="div">
               {query.Name}

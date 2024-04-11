@@ -4,8 +4,6 @@ import { jwtDecode } from 'jwt-decode'
 import Search from '../components/Search';
 import CompanyCard from '../components/CompanyCard';
 import Modal from "../components/Modal";
-
-
 function Home() {
     const navigate = useNavigate();
     const [company, setCompany] = useState(null);
@@ -44,6 +42,12 @@ function Home() {
 
     return (
         <>
+            <div class="hero-container">
+                <div class="hero">
+                    <h1>GIST</h1>
+                    <h4>get the gist of it..</h4>
+                </div>
+            </div>
             <section className="search-section">
                 <Search isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded}/>
                 { company && !company._id && <Modal open={open} handleModal={handleModal} query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} /> } 
