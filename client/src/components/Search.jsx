@@ -4,11 +4,11 @@ import { faCaretDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icon
 import SearchField from './SearchField';
 
 function Search(props){
-    const { isAuthenticated, handleModal, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded } = props;
+    const { isAuthenticated, handleModal, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded, scrollFeature } = props;
     return (
         <div className="search-container">
             <div className="search-box">
-                <SearchField isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded}/>
+                <SearchField isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded} scrollFeature={scrollFeature}/>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </div>
         </div>
