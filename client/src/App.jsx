@@ -13,6 +13,14 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  const handleAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  }
+
+  const handleAdmin = (boolean) => {
+    setIsAdmin(boolean);
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
