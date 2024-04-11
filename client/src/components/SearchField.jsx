@@ -44,20 +44,24 @@ function SearchField(props) {
             value={query}
             id="custom-autocomplete"
             onChange={(event, newQuery) => { // represents on click
-                if (typeof newQuery === 'string') {
-                    setQuery({
-                        Name: newQuery,
-                    });
-                } else if (newQuery && newQuery.inputValue) {
-                    // post new company
-                    setQuery({
-                        Name: newQuery.inputValue,
-                    });
-                    handleModal(true);
-                    handleQuerySubmit(query);
+                if (isAuthenticated) {
+                    if (typeof newQuery === 'string') {
+                        setQuery({
+                            Name: newQuery,
+                        });
+                    } else if (newQuery && newQuery.inputValue) {
+                        // post new company
+                            setQuery({
+                                Name: newQuery.inputValue,
+                            });
+                            handleModal(true);
+                            handleQuerySubmit(query);
+                    } else {
+                        setQuery(newQuery);
+                        handleQuerySubmit(query);
+                    }
                 } else {
-                    setQuery(newQuery);
-                    handleQuerySubmit(query);
+                    alert('You must be logged in to search.');
                 }
             }}
             filterOptions={(options, params) => { // updates autocomplete options
