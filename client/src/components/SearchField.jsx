@@ -9,7 +9,7 @@ function SearchField(props) {
     const [companies, setCompanies] = useState([]);
     
     const filter = createFilterOptions();
-    const { isAuthenticated, handleModal, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded } = props;
+    const { isAuthenticated, handleModal, handleQuerySubmit, handleCompanyUpdate, isCompanyAdded, scrollFeature } = props;
       
     useEffect(() => {
         const fetchCompanies = async () => {
@@ -56,11 +56,12 @@ function SearchField(props) {
                         });
                         handleModal(true);
                         handleQuerySubmit(query);
+                        scrollFeature();
                     } else {
                         // existing company
                         setQuery(newQuery);
                         handleQuerySubmit(query);
-                        
+                        scrollFeature();
                     }
                 } else {
                     alert('You must be logged in to search.');

@@ -20,6 +20,7 @@
 }
 .company-card-section{
     background: linear-gradient(rgba(50,3,145,1), black );
+    transition-duration: 2s; 
 }
 
 section{

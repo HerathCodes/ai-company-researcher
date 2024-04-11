@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Search from '../components/Search';
 import CompanyCard from '../components/CompanyCard';
 import Modal from "../components/Modal";
@@ -9,6 +9,13 @@ function Home(props) {
     const [company, setCompany] = useState(null);
     const [open, setOpen] = useState(true);
     const [isCompanyAdded, setIsCompanyAdded] = useState(true);
+    const elementRef = useRef(null);
+
+    const scrollToElement = () => {
+        if (elementRef.current) {
+            elementRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
 
     const handleModal = (boolean) => {
         setOpen(boolean);
@@ -32,13 +39,13 @@ function Home(props) {
                 </div>
             </div>
             <section className="search-section">
-                <Search isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded}/>
+                <Search isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded} scrollFeature={scrollToElement}/>
                 { company && !company._id && <Modal open={open} handleModal={handleModal} query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} /> } 
             </section>
-            { company && company._id && <section className="company-card-section">
-                <CompanyCard query={company}/>
+             <section className="company-card-section" ref={elementRef}>
+             { company && company._id &&<CompanyCard query={company}/>}
             </section>
-            }
+            
         </>
     )
 }

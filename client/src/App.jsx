@@ -25,12 +25,16 @@ function App() {
     const token = localStorage.getItem('token');
     if (token) {
         const user = jwtDecode(token);
+        console.log(user);
         console.log(user.name);
         if (!user) {
             localStorage.removeItem('token');
+            setIsAuthenticated(false);
         }
         else {
+            console.log('test');
             setIsAuthenticated(true);
+            console.log(isAuthenticated);
             if (user.role === 'admin') {
                 setIsAdmin(true);
             }
