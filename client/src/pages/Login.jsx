@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Login() {
+function Login(props) {
+  const { handleAuth, handleAdmin } = props;
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,10 +21,15 @@ function Login() {
       })
       
     const data = await response.json();
-    if (data.user) {
+    console.log(data);
+    if (data.token) {
+      navigate('/');
       alert('Login successful!')
-      localStorage.setItem('token', data.user)
-      navigate('/')
+      localStorage.setItem('token', data.token)
+      handleAuth(true);
+      if (data.role === 'admin') {
+        handleAdmin(true);
+      }
     } else {
       alert('Invalid Login.')
     }

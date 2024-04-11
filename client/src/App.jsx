@@ -21,27 +21,6 @@ function App() {
     setIsAdmin(boolean);
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        const user = jwtDecode(token);
-        console.log(user);
-        console.log(user.name);
-        if (!user) {
-            localStorage.removeItem('token');
-            setIsAuthenticated(false);
-        }
-        else {
-            console.log('test');
-            setIsAuthenticated(true);
-            console.log(isAuthenticated);
-            if (user.role === 'admin') {
-                setIsAdmin(true);
-            }
-        }
-    } 
-  }, [])
-
   return (
     <div>
       <BrowserRouter>
@@ -49,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isAuthenticated={isAuthenticated}/>} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login handleAuth={handleAuth} handleAdmin={handleAdmin}/>} />
           <Route path="/admin" element={<Admin isAdmin={isAdmin}/>} />
         </Routes>
       </BrowserRouter>
