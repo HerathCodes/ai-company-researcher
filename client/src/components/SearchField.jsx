@@ -56,7 +56,6 @@ function SearchField(props) {
                         });
                         handleModal(true);
                         handleQuerySubmit(query);
-                        scrollFeature();
                     } else {
                         // existing company
                         setQuery(newQuery);

@@ -40,10 +40,10 @@ function Home(props) {
             </div>
             <section className="search-section">
                 <Search isAuthenticated={isAuthenticated} handleModal={handleModal} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} isCompanyAdded={isCompanyAdded} scrollFeature={scrollToElement}/>
-                { company && !company._id && <Modal open={open} handleModal={handleModal} query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} /> } 
+                { company && !company._id && <Modal open={open} handleModal={handleModal} query={company} handleQuerySubmit={handleQuerySubmit} handleCompanyUpdate={handleCompanyUpdate} scrollFeature={scrollToElement}/> } 
             </section>
-             <section className="company-card-section" ref={elementRef}>
-             { company && company._id &&<CompanyCard query={company}/>}
+            <section className="company-card-section" ref={elementRef}>
+                { company && company._id &&<CompanyCard query={company}/>}
             </section>
             
         </>

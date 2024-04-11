@@ -10,16 +10,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 function Modal(props) {
 
 
-    const { open, handleModal, query, handleQuerySubmit, handleCompanyUpdate } = props;
+    const { open, handleModal, query, handleQuerySubmit, handleCompanyUpdate, scrollFeature } = props;
 
     const handleClose = () => {
       handleModal(false);
     };
   
-    // const handleClose = () => {
-    //   setOpen(false);
-    // };
-
     async function scrapeCompany(e) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -61,6 +57,9 @@ function Modal(props) {
             const company = await response.json();
             handleQuerySubmit(company);
             handleCompanyUpdate(true);
+            scrollFeature();
+            alert('Company added!');
+
         } else {
             console.error('Failed to create company:', response.statusText);
         }
