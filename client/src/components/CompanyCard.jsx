@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 
 function CompanyCard(props) {
   const { query } = props;
-
   return (
     <Card>
       <CardHeader
@@ -23,15 +22,11 @@ function CompanyCard(props) {
             <Typography variant="h6" component="div">
               Links:
             </Typography>
-            <ul>
-              {query.Links.map((link, index) => (
-                <li key={index}>
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {query.Links.map((link, index) => (
+              <div key={index}>
+                <a href={link} target="_blank" rel="noreferrer">{link}</a>
+              </div>
+            ))}
           </div>
         )}
       </CardContent>
