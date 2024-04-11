@@ -35,7 +35,6 @@ function Home(props) {
             <div className="hero-container">
                 <div className="hero">
                     <h1>GIST</h1>
-                    <h4>get the gist of it..</h4>
                 </div>
             </div>
             <section className="search-section">
