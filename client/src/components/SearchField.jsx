@@ -51,14 +51,16 @@ function SearchField(props) {
                         });
                     } else if (newQuery && newQuery.inputValue) {
                         // post new company
-                            setQuery({
-                                Name: newQuery.inputValue,
-                            });
-                            handleModal(true);
-                            handleQuerySubmit(query);
+                        setQuery({
+                            Name: newQuery.inputValue,
+                        });
+                        handleModal(true);
+                        handleQuerySubmit(query);
                     } else {
+                        // existing company
                         setQuery(newQuery);
                         handleQuerySubmit(query);
+                        
                     }
                 } else {
                     alert('You must be logged in to search.');

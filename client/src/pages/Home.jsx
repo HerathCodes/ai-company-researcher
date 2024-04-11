@@ -25,8 +25,8 @@ function Home(props) {
 
     return (
         <>
-            <div class="hero-container">
-                <div class="hero">
+            <div className="hero-container">
+                <div className="hero">
                     <h1>GIST</h1>
                     <h4>get the gist of it..</h4>
                 </div>

@@ -19,7 +19,7 @@ function Navbar() {
         navigate(path);
     };
     return (
-        <div>
+        <div className="pull-forward">
             <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
