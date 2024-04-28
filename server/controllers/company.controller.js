@@ -30,13 +30,14 @@ const scrapeCompany = async(req, res) => {
         const { Name, Site } = req.body;
         console.log(req.body);
         const q = 'About ' + Site;
-        const response = await fetch(`https://serpapi.com/search?api_key=${process.env.SERP_API_KEY}&engine=google_about_this_result&async=true&q=${q}`);
+        const response = await fetch(`https://serpapi.com/search?api_key=${process.env.SERP_API_KEY}&engine=google_about_this_result&q=${q}`);
         if (response.status === 200) {
             const data = await response.json();
             const aboutResult = data.about_this_result;
             let sum = '';
             const Links = [];
             console.log(data.search_metadata.json_endpoint);
+            if (!data || !aboutResult) return res.status(400).json({ error: "SERP API Error. Could not fetch JSON data" });
             if (aboutResult.about_the_source.in_their_own_words) {
                 const in_their_own_words =aboutResult.about_the_source.in_their_own_words;
                 const snippet = in_their_own_words.snippet;
